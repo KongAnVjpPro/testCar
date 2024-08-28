@@ -8,14 +8,9 @@ public class SelfDestroy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke(nameof(this.destroy), 2f);
+        Invoke(nameof(this.destroy), 12f);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     void destroy()
     {

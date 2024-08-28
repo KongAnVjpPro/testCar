@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    List<GameObject> minions;
+    [SerializeField] List<GameObject> minions;
     public GameObject minionPrefab;
+    protected float spawnTimer = 0f;
+    protected float spawnDelay = 1f;
     void Start()
     {
         this.minions = new List<GameObject>();
@@ -15,18 +17,35 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         Spawn();
+        CheckMinionDead();
     }
 
     void Spawn()
     {
+        this.spawnTimer += Time.deltaTime;
+        if (this.spawnTimer < this.spawnDelay) return;
+        this.spawnTimer = 0;
 
         if (this.minions.Count >= 7) return;
 
         int index = this.minions.Count + 1;
 
         GameObject minion = Instantiate(this.minionPrefab);
-        minion.SetActive(true);
+        minion.gameObject.SetActive(true);
+
+        minion.transform.position = this.transform.position;
         minion.name = "minionPrefab#" + index;
         this.minions.Add(minion);
+    }
+
+    void CheckMinionDead()
+    {
+        GameObject minion;
+        for (int i = 0; i < this.minions.Count; i++)
+        {
+            minion = this.minions[i];
+            if (minion == null) this.minions.RemoveAt(i);
+        }
+
     }
 }
