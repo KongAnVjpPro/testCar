@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class EnemyCtrl : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Despawner despawner;
+    void Awake()
     {
-        
+        this.despawner = GetComponent<Despawner>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

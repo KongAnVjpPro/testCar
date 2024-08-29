@@ -1,51 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] List<GameObject> minions;
-    public GameObject minionPrefab;
-    protected float spawnTimer = 0f;
-    protected float spawnDelay = 1f;
-    void Start()
+
+    protected float timer = 0f;
+    protected float timeDelay = 2f;
+    [SerializeField] protected GameObject enemyPrefab;
+
+    void Awake()
     {
-        this.minions = new List<GameObject>();
+        this.enemyPrefab = GameObject.Find("EnemyPrefab");
+        this.enemyPrefab.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         Spawn();
-        CheckMinionDead();
     }
 
-    void Spawn()
+    protected virtual void Spawn()
     {
-        this.spawnTimer += Time.deltaTime;
-        if (this.spawnTimer < this.spawnDelay) return;
-        this.spawnTimer = 0;
+        this.timer += Time.deltaTime;
+        if (this.timer < this.timeDelay) return;
+        this.timer = 0;
 
-        if (this.minions.Count >= 7) return;
 
-        int index = this.minions.Count + 1;
-
-        GameObject minion = Instantiate(this.minionPrefab);
-        minion.gameObject.SetActive(true);
-
-        minion.transform.position = this.transform.position;
-        minion.name = "minionPrefab#" + index;
-        this.minions.Add(minion);
-    }
-
-    void CheckMinionDead()
-    {
-        GameObject minion;
-        for (int i = 0; i < this.minions.Count; i++)
-        {
-            minion = this.minions[i];
-            if (minion == null) this.minions.RemoveAt(i);
-        }
-
+        GameObject enemy = Instantiate(this.enemyPrefab);
+        enemy.transform.position = transform.position;
+        enemy.SetActive(true);
     }
 }
