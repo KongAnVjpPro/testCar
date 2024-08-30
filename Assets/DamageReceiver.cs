@@ -7,18 +7,15 @@ public class DamageReceiver : MonoBehaviour
 {
 
     [SerializeField] protected int hp = 10;
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual bool IsDead()
     {
-
+        return this.hp <= 0;
     }
-
     public virtual void receiveDamage(int dmg)
     {
         this.hp -= dmg;

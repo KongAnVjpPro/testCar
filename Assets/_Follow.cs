@@ -15,7 +15,8 @@ public class _Follow : MonoBehaviour
 
     void Update()
     {
-        Invoke(nameof(this.Follow), 3f);
+        //Invoke(nameof(this.Follow), 3f);
+        this.Follow();
     }
 
     void Follow()

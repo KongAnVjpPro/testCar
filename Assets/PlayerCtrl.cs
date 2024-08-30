@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public DamageReceiver damageReceiver;
+    public PlayerStatus playerStatus;
+    void Awake()
     {
-        
+        this.damageReceiver = GetComponent<DamageReceiver>();
+        this.playerStatus = GetComponent<PlayerStatus>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
