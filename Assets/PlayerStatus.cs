@@ -15,12 +15,5 @@ public class PlayerStatus : MonoBehaviour
     {
         Debug.Log("Dead");
     }
-    protected virtual void CheckDead()
-    {
-        if (this.playerCtrl.damageReceiver.IsDead()) this.Dead();
-    }
-    void Update()
-    {
-        //this.CheckDead();
-    }
+
 }
