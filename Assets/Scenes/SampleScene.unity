@@ -496,10 +496,10 @@ GameObject:
   - component: {fileID: 2066686713}
   - component: {fileID: 2066686712}
   - component: {fileID: 2066686715}
-  - component: {fileID: 2066686714}
   - component: {fileID: 2066686716}
   - component: {fileID: 2066686718}
   - component: {fileID: 2066686717}
+  - component: {fileID: 2066686719}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -574,19 +574,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2066686714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066686711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ae781018de963f48893c3d080396636, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 10
 --- !u!58 &2066686715
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -661,6 +648,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageReceiver: {fileID: 0}
+  playerStatus: {fileID: 0}
+--- !u!114 &2066686719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066686711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd77bd43dd1b05c49b3685599f920a10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

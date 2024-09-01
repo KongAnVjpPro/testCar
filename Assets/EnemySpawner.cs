@@ -23,6 +23,7 @@ public class EnemySpawner : MonoBehaviour
 
     protected virtual void Spawn()
     {
+        if (PlayerCtrl.instance.damageReceiver.IsDead()) return;
         this.timer += Time.deltaTime;
         if (this.timer < this.timeDelay) return;
         this.timer = 0;
