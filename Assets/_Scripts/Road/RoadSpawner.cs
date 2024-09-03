@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoadSpawner : MonoBehaviour
@@ -8,11 +9,16 @@ public class RoadSpawner : MonoBehaviour
     protected GameObject roadSpawnPos;
     protected float distance = 0;
     protected GameObject roadCurrent;
+    protected int roadLayerOrder = 0;
     private void Awake()
     {
         this.roadPrefab = GameObject.Find("RoadPrefab");
         this.roadSpawnPos = GameObject.Find("RoadSpawnPos");
-        this.roadCurrent = this.roadPrefab;
+        this.roadPrefab.SetActive(false);
+
+        // this.roadCurrent = this.roadPrefab;
+        this.roadLayerOrder = (int)this.roadPrefab.transform.position.z;
+        this.Spawn(this.roadPrefab.transform.position);
     }
 
     private void FixedUpdate()
@@ -28,6 +34,15 @@ public class RoadSpawner : MonoBehaviour
     {
         Vector3 pos = this.roadSpawnPos.transform.position;
         pos.x = 0;
-        this.roadCurrent = Instantiate(this.roadPrefab, pos, this.roadPrefab.transform.rotation);
+        pos.z = this.roadLayerOrder;
+        this.Spawn(pos);
+        // this.roadCurrent = Instantiate(this.roadPrefab, pos, this.roadPrefab.transform.rotation);
+        // this.roadCurrent.SetActive(true);
+    }
+
+    protected virtual void Spawn(Vector3 position)
+    {
+        this.roadCurrent = Instantiate(this.roadPrefab, position, this.roadPrefab.transform.rotation);
+        this.roadCurrent.SetActive(true);
     }
 }

@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float speedDown = 0.5f;
     public float speedMax = 20f;
     public float speedHorizontal = 3f;
+    public bool autoRun = false;
 
     private void Awake()
     {
@@ -29,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     {
         this.pressHorizontal = Input.GetAxis("Horizontal");
         this.PressVertical = Input.GetAxis("Vertical");
+
+        if (this.autoRun) this.PressVertical = 1f;
     }
 
     protected virtual void UpdateSpeed()
