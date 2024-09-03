@@ -5,27 +5,29 @@ using UnityEngine;
 public class _Follow : MonoBehaviour
 {
     public Transform player;
-    public float speed;
-    public float distanceLimit;
-    void Start()
+    public float speed = 27f;
+    public float distanceLimit = 6f;
+    public float randPos = 0;
+    private void Start()
     {
-        this.speed = 10f;
-        this.distanceLimit = 0.5f;
+        this.player = PlayerCtrl.instance.transform;
+        this.randPos = Random.Range(-6, 6);
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        //Invoke(nameof(this.Follow), 3f);
         this.Follow();
     }
 
     void Follow()
     {
-        Vector3 distance = this.player.position - transform.position;
+        Vector3 pos = this.player.position;
+        pos.x = this.randPos;
+        Vector3 distance = pos - transform.position;
         if (distance.magnitude >= this.distanceLimit)
         {
-            Vector3 targetPoint = this.player.position - distance.normalized * this.distanceLimit;
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPoint, this.speed * Time.deltaTime);
+            Vector3 targetPoint = pos - distance.normalized * this.distanceLimit;
+            transform.position = Vector3.MoveTowards(transform.position, targetPoint, this.speed * Time.fixedDeltaTime);
 
         }
     }

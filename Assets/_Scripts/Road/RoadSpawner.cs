@@ -44,5 +44,6 @@ public class RoadSpawner : MonoBehaviour
     {
         this.roadCurrent = Instantiate(this.roadPrefab, position, this.roadPrefab.transform.rotation);
         this.roadCurrent.SetActive(true);
+        this.roadCurrent.transform.parent = transform;
     }
 }
