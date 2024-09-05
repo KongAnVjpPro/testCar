@@ -6,7 +6,7 @@ using UnityEngine;
 public class DamageReceiver : MonoBehaviour
 {
 
-    [SerializeField] protected int hp = 3;
+    public int hp = 1;
     void Awake()
     {
 
